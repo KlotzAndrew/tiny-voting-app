@@ -1,2 +1,7 @@
 npm-debug.log
 node_modules/
+
+#rubymine project files
+/.idea
+
+/voting-client/dist

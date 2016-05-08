@@ -4,11 +4,11 @@ import React from 'react';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
-  render: function() {
-    return(
+  render: function () {
+    return (
       <div className="winner">
         Winner is {this.props.winner}!
       </div>
     );
-  }
-})
+  },
+});

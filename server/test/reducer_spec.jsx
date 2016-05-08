@@ -1,26 +1,25 @@
-import {Map, fromJS} from 'immutable';
-import {expect} from 'chai';
+import { Map, fromJS } from 'immutable';
+import { expect } from 'chai';
 
 import reducer from '../src/reducer';
 
-describe ('reducer', () => {
-
+describe('reducer', () => {
   it('has an inital state', () => {
-    const action = {type: 'SET_ENTRIES', entries: ['Trainspotting']};
+    const action = { type: 'SET_ENTRIES', entries: ['Trainspotting'] };
     const nextState = reducer(undefined, action);
 
     expect(nextState).to.equal(fromJS({
-      entries: ['Trainspotting']
+      entries: ['Trainspotting'],
     }));
   });
 
   it('handles SET_ENTRIES', () => {
     const initialState = Map();
-    const action = {type: 'SET_ENTRIES', entries: ['Trainspotting']};
+    const action = { type: 'SET_ENTRIES', entries: ['Trainspotting'] };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
-      entries: ['Trainspotting']
+      entries: ['Trainspotting'],
     }));
   });
 
@@ -28,43 +27,37 @@ describe ('reducer', () => {
     const initialState = fromJS({
       entries: ['Trainspotting', '28 Days Later']
     });
-    const action = {type: 'NEXT'};
+    const action = { type: 'NEXT' };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
       vote: {
         round: 1,
-        pair: ['Trainspotting', '28 Days Later']
+        pair: ['Trainspotting', '28 Days Later'],
       },
-      entries: []
+      entries: [],
     }));
   });
 
   it('handles VOTE', () => {
     const initialState = fromJS({
       vote: {
-        pair: ['Trainspotting', '28 Days Later']
+        pair: ['Trainspotting', '28 Days Later'],
       },
-      entries: []
+      entries: [],
     });
-    const action = {type: 'VOTE', entry: 'Trainspotting'};
+    const action = { type: 'VOTE', entry: 'Trainspotting' };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
       vote: {
         pair: ['Trainspotting', '28 Days Later'],
-        tally: {Trainspotting: 1}
+        tally: { Trainspotting: 1 },
       },
-      entries: []
-    }));
-  });
-
+      entries: [], })); });
   it('can be used with reduce', () => {
     const actions = [
-      {type: 'SET_ENTRIES', entries: ['Trainspotting', '28 Days Later']},
-      {type: 'NEXT'},
-      {type: 'VOTE', entry: 'Trainspotting'},
-      {type: 'VOTE', entry: '28 Days Later'},
+      {type: 'SET_ENTRIES', entries: ['Trainspotting', '28 Days Later']}, {type: 'NEXT'}, {type: 'VOTE', entry: 'Trainspotting'}, {type: 'VOTE', entry: '28 Days Later'},
       {type: 'VOTE', entry: 'Trainspotting'},
       {type: 'NEXT'}
     ];
@@ -74,6 +67,5 @@ describe ('reducer', () => {
       winner: 'Trainspotting'
     }));
   });
-
 });
 

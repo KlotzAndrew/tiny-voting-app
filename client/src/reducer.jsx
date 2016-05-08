@@ -1,4 +1,4 @@
-import {List, Map} from 'immutable';
+import { List, Map } from 'immutable';
 
 function setState(state, newState) {
   return state.merge(newState);
@@ -10,7 +10,7 @@ function vote(state, entry) {
   if (currentPair && currentPair.includes(entry)) {
     return state.set('myVote', Map({
       round: currentRound,
-      entry
+      entry,
     }));
   } else {
     return state;
@@ -27,7 +27,7 @@ function resetVote(state) {
   }
 }
 
-export default function(state = Map(), action) {
+export default function (state = Map(), action) {
   switch (action.type) {
     case 'SET_STATE':
       return resetVote(setState(state, action.state));
@@ -35,5 +35,5 @@ export default function(state = Map(), action) {
       return vote(state, action.entry);
   }
 
-  return state
+  return state;
 }

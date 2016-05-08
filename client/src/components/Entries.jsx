@@ -3,26 +3,25 @@ import React from 'react';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
-  _mapEntries: function() {
-    let entries = this.props.entries || [];
-    let results = [];
+  mapEntries: function () {
+    const entries = this.props.entries || [];
+    const results = [];
 
-    entries.map(function(e, i) {
+    entries.map(function (e, i) {
       results.push(
         <div>
-          {i+1}) {e}
-        </div>)
+          {i + 1}) {e}
+        </div>);
     });
 
-    return results
+    return results;
   },
-  render: function() {
-    return(
+  render: function () {
+    return (
       <div>
-        {this._mapEntries()}
+        {this.mapEntries()}
       </div>
-    )
-  }
-})
-
+    );
+  },
+});
 

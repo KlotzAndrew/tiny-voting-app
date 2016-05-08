@@ -1,4 +1,4 @@
-import {List, Map} from 'immutable';
+import { List, Map } from 'immutable';
 
 export const INITIAL_STATE = Map();
 
@@ -18,11 +18,11 @@ export function next(state) {
     return state.merge({
       vote: Map({
         round: state.getIn(['vote', 'round'], 0) + 1,
-        pair: entries.take(2)
+        pair: entries.take(2),
       }),
-      entries: entries.skip(2)
+      entries: entries.skip(2),
     });
-  };
+  }
 }
 
 export function vote(voteState, entry) {
